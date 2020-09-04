@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexagonTile", "HexagonTile\HexagonTile.csproj", "{FF7425EC-B8CB-43DD-8962-32FB3D060A4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF7425EC-B8CB-43DD-8962-32FB3D060A4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF7425EC-B8CB-43DD-8962-32FB3D060A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF7425EC-B8CB-43DD-8962-32FB3D060A4B}.Debug|x64.ActiveCfg = Debug|x64
+		{FF7425EC-B8CB-43DD-8962-32FB3D060A4B}.Debug|x64.Build.0 = Debug|x64
+		{FF7425EC-B8CB-43DD-8962-32FB3D060A4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF7425EC-B8CB-43DD-8962-32FB3D060A4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF7425EC-B8CB-43DD-8962-32FB3D060A4B}.Release|x64.ActiveCfg = Release|x64
+		{FF7425EC-B8CB-43DD-8962-32FB3D060A4B}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B3C38A5D-0630-4917-ACA2-6DCFDB0715C2}
+	EndGlobalSection
+EndGlobal
