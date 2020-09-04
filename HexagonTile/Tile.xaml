@@ -6,7 +6,13 @@
              xmlns:local="clr-namespace:HexagonTile"
              mc:Ignorable="d" Height="64" Width="64">
     <Grid >
-        <Image x:Name="iconImage" Source="/resources/tile.png"/>
-        <TextBlock x:Name="tbName"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/resources/tile.png" Stretch="Uniform"/>
+        </Grid.Background>
+        <Grid Background="#02000000" ></Grid>
+        <Grid x:Name="iconGrid" Margin="10,10,10,10">
+            <Image x:Name="iconImage" Source="/resources/tile.png" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" StretchDirection="Both"/>
+        </Grid>
+        <TextBlock x:Name="tbName"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="#00000000"/>
     </Grid>
 </UserControl>

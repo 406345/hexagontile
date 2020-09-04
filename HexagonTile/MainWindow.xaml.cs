@@ -55,11 +55,19 @@ namespace HexagonTile
         {
             var files = SystemHelper.GetAllDesktopShortcuts();
 
+            int idx = 0;
             foreach (var item in files)
             {
                 Tile tile = new Tile(AppMeta.create(item));
-                world.Children.Add(tile);
                 tiles.Add(tile);
+
+                var p = tile.Margin;
+                p.Left = Config.Instance.Tile.Width * idx++;
+                p.Top = 10;
+                tile.Margin = p;
+
+                world.Children.Add(tile);
+
             }
         }
     }

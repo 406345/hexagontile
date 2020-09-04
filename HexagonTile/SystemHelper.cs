@@ -10,12 +10,16 @@ namespace HexagonTile
     {
         private static readonly Guid CLSID_WshShell = new Guid("72C24DD5-D70A-438B-8A42-98424B88AFB8");
 
-        public static List<string> GetAllDesktopShortcuts()
+        /// <summary>
+        /// 获取所有桌面图标
+        /// </summary>
+        /// <returns></returns>
+        public static List<ShortcutInfo> GetAllDesktopShortcuts()
         {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
             var files = System.IO.Directory.GetFiles(path);
 
-            var ret = new List<string>();
+            var ret = new List<ShortcutInfo>();
             var fileList = (from j in files where !j.EndsWith("ini") select j).ToList();
 
             IWshRuntimeLibrary.WshShell shell = new IWshRuntimeLibrary.WshShellClass();
@@ -29,11 +33,21 @@ namespace HexagonTile
                     string iconloc = shortcut.IconLocation;
                     string args = shortcut.Arguments;
 
-                    ret.Add(realPath);
+                    ret.Add(new ShortcutInfo()
+                    {
+                        ExePath = realPath,
+                        Arguments = args,
+                        Icon = iconloc
+                    }) ;
                 }
                 else
                 {
-                    ret.Add(item);
+                    ret.Add(new ShortcutInfo()
+                    {
+                        ExePath = item,
+                        Arguments = "",
+                        Icon = ""
+                    });
                 }
             }
 

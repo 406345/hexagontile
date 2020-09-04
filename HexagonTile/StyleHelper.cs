@@ -9,6 +9,10 @@ namespace HexagonTile
 {
     class StyleHelper
     {
+        /// <summary>
+        /// 使目标句柄位于系统最下层
+        /// </summary>
+        /// <param name="window">WPF window object</param>
         public static void SetButtom(Window window)
         {
             var ptr = new WindowInteropHelper(window).Handle;
