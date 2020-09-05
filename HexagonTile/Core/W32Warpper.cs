@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Media;
@@ -39,9 +40,18 @@ namespace HexagonTile.Core
             IntPtr[] iconPtrs = new IntPtr[10];
             var ptr = new IntPtr(PrivateExtractIcons(s, 0, 512, 512, iconPtrs, null, 1, 0));
 
-            var icon = Icon.FromHandle(iconPtrs[0]);
-            var bitmap = icon.ToBitmap();
-            return System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(), System.IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            if (ptr != IntPtr.Zero)
+            {
+                var icon = Icon.FromHandle(iconPtrs[0]);
+                var bitmap = icon.ToBitmap();
+                return System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(), System.IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            }
+            else
+            {
+                FileInfo fi = new FileInfo(s);
+                var ext = FileIcon.GetIconByFileType(fi.Extension, true);
+                return System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(ext.ToBitmap().GetHbitmap(), System.IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            }
         }
     }
 }

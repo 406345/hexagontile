@@ -4,14 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HexagonTile"
-             mc:Ignorable="d" Height="64" Width="64">
+             mc:Ignorable="d" Height="64" Width="64" MouseDoubleClick="userControl_MouseDoubleClick">
     <Grid >
         <Grid.Background>
             <ImageBrush ImageSource="/resources/tile.png" Stretch="Uniform"/>
         </Grid.Background>
         <Grid Background="#02000000" ></Grid>
         <Grid x:Name="iconGrid" Margin="10,10,10,10">
-            <Image x:Name="iconImage" Source="/resources/tile.png" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" StretchDirection="Both"/>
+            <Image x:Name="iconImage" Source="/resources/tile.png" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" StretchDirection="Both">
+            </Image>
         </Grid>
         <TextBlock x:Name="tbName"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="#00000000"/>
     </Grid>

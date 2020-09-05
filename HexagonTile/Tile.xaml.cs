@@ -27,6 +27,8 @@ namespace HexagonTile
         public AppMeta AppMeta { get; private set; } = new AppMeta();
         public Window Owner { get; set; }
         private double HalfWidth = 1;
+        public Point VirtualPosition = new Point();
+
         public Tile()
         {
             InitializeComponent();
@@ -93,17 +95,14 @@ namespace HexagonTile
                 default:
                     break;
             }
-
         }
 
         public void AdjustToGrid()
         {
             var m = this.Margin;
-            var xf = (int)((m.Left + this.HalfWidth) / SysConfig.Instance.Tile.Width);
-            var yf = (int)((m.Top + this.HalfWidth) / SysConfig.Instance.Tile.Height);
-            var offset = ((int)yf % 2) == 0 ? 0.0 : (SysConfig.Instance.Tile.Width / 2.0);
-            m.Left = xf * SysConfig.Instance.Tile.Width + offset;
-            m.Top = yf * SysConfig.Instance.Tile.Height; // +
+            double offset = ((int)this.VirtualPosition.Y % 2) != 0 ? 0.0 : (SysConfig.Instance.Tile.Width / 2.0);
+            m.Left = this.VirtualPosition.X * SysConfig.Instance.Tile.Width + offset;
+            m.Top = this.VirtualPosition.Y * SysConfig.Instance.Tile.Height; // +
 
             this.Margin = m;
             SavePosToConfig();
@@ -142,11 +141,20 @@ namespace HexagonTile
                 SysConfig.Instance.Position.Add(pos);
             }
 
+            
             pos.Path = this.AppMeta.Path;
-            pos.X = (int)this.Margin.Left;
-            pos.Y = (int)this.Margin.Top;
+            pos.X = (int)this.VirtualPosition.X;
+            pos.Y = (int)this.VirtualPosition.Y ;
 
             SysConfig.Save();
+        }
+
+        private void userControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if(SystemContext.Instance.TileMode == Enums.TileMode.Normal)
+            {
+                ProcessExecutor.Execute(this.AppMeta);
+            }
         }
     }
 }

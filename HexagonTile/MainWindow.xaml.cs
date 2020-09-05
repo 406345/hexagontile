@@ -33,37 +33,31 @@ namespace HexagonTile
             this.LoadShotcuts();
 
             fileWatcher.EnableRaisingEvents = true;
-            fileWatcher.Changed += fileWatcher_Changed;
+            fileWatcher.Created += FileWatcher_Created;
+            fileWatcher.Deleted += FileWatcher_Deleted      ;
+        }
+
+        private void FileWatcher_Created(object sender, FileSystemEventArgs e)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                LoadShotcuts();
+            });
+        }
+
+        private void FileWatcher_Deleted(object sender, FileSystemEventArgs e)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                LoadShotcuts();
+            });
         }
 
         private void CreateNotifyIcon()
         {
             
         }
-
-        private void fileWatcher_Changed(object sender, FileSystemEventArgs e)
-        {
-            switch (e.ChangeType)
-            {
-                case WatcherChangeTypes.Created:
-                    break;
-                case WatcherChangeTypes.Deleted:
-                    break;
-                case WatcherChangeTypes.Changed:
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        LoadShotcuts();
-                    });
-                    break;
-                case WatcherChangeTypes.Renamed:
-                    break;
-                case WatcherChangeTypes.All:
-                    break;
-                default:
-                    break;
-            }
-        }
-
+         
         private void MainWindow_StateChanged(object sender, EventArgs e)
         {
             StyleHelper.SetButtom((Window)sender);
@@ -95,16 +89,17 @@ namespace HexagonTile
 
                 if (posConfig != null)
                 {
-                    p.Left = posConfig.X;
-                    p.Top = posConfig.Y;
+                    tile.VirtualPosition.X = posConfig.X;
+                    tile.VirtualPosition.Y = posConfig.Y;
                 }
                 else
                 {
-                    p.Left = SysConfig.Instance.Tile.Width * idx++;
-                    p.Top = 10;
+                    tile.VirtualPosition.X = idx++;
+                    tile.VirtualPosition.Y = 0;
                 }
                 tile.Margin = p;
                 world.Children.Add(tile);
+                tile.AdjustToGrid();
             }
         }
 
@@ -139,7 +134,7 @@ namespace HexagonTile
                 else if(SystemContext.Instance.TileMode == Enums.TileMode.Normal)
                 {
                     SystemContext.Instance.TileMode = Enums.TileMode.Editing;
-                    world.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(50, 255, 255, 255));
+                    world.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 255, 255, 255));
                 }
             }
 
@@ -155,6 +150,9 @@ namespace HexagonTile
                 var pos = e.GetPosition(this);
                 m.Left = pos.X - SysConfig.Instance.Tile.Width / 2;
                 m.Top = pos.Y - SysConfig.Instance.Tile.Height / 2;
+
+                selectedTile.VirtualPosition.X = (int)((m.Left+ SysConfig.Instance.Tile.Width / 2) / SysConfig.Instance.Tile.Width);
+                selectedTile.VirtualPosition.Y = (int)((m.Top + SysConfig.Instance.Tile.Height / 2) / SysConfig.Instance.Tile.Height);
                 selectedTile.Margin = m;
             }
         }
