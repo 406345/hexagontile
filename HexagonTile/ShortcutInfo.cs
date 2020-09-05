@@ -6,6 +6,7 @@ namespace HexagonTile
 {
     public class ShortcutInfo
     {
+        public string LnkPath { get; set; }
         public string ExePath { get; set; }
         public string Arguments { get; set; }
         public string Icon { get; set; }

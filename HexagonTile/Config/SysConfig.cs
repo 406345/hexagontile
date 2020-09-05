@@ -1,28 +1,27 @@
-﻿using HexagonTile.config;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace HexagonTile
+namespace HexagonTile.Config
 {
-    class Config
+    class SysConfig
     {
         [JsonProperty("tile")]
         public TileConfig Tile { get; set; } = new TileConfig();
-        
-        
-        
-        static Config instance = new Config();
-        public static Config Instance
+        [JsonProperty("position")]
+        public List<TilePositionConfig> Position { get; set; } = new List<TilePositionConfig>();
+
+        static SysConfig instance = null;
+        public static SysConfig Instance
         {
             get
             {
                 if (instance == null && System.IO.File.Exists("config.json"))
                 {
-                    instance = Newtonsoft.Json.JsonConvert.DeserializeObject<Config>(System.IO.File.ReadAllText("config.json"));
+                    instance = Newtonsoft.Json.JsonConvert.DeserializeObject<SysConfig>(System.IO.File.ReadAllText("config.json"));
                 }
 
                 return instance;

@@ -7,7 +7,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WinApi.User32;
 
-namespace HexagonTile
+namespace HexagonTile.Core
 {
     class W32Warpper
     {

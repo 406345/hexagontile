@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Interop;
 using WinApi.User32;
 
-namespace HexagonTile
+namespace HexagonTile.Helper
 {
     class StyleHelper
     {
@@ -21,6 +21,24 @@ namespace HexagonTile
                 WindowPositionFlags.SWP_NOMOVE
                 | WindowPositionFlags.SWP_NOSIZE
                 | WindowPositionFlags.SWP_NOACTIVATE);
+        }
+
+        /// <summary>
+        /// 使目标句柄位于系统最下层
+        /// </summary>
+        /// <param name="window">WPF window object</param>
+        public static void HideAppInTaskbar(Window window)
+        {
+            window.WindowStyle = WindowStyle.None;
+            window.WindowState = WindowState.Maximized;
+            window.ShowInTaskbar = false;
+            var ptr = new WindowInteropHelper(window).Handle;
+
+            var longvalue = User32Methods.GetWindowLongPtr(ptr, -20).ToInt64();
+
+            longvalue = longvalue | 0x00000080;
+
+            User32Methods.SetWindowLongPtr(ptr, -20, new IntPtr(longvalue));
         }
     }
 }

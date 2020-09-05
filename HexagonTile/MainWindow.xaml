@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HexagonTile"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" AllowsTransparency="True" WindowStyle="None" Background="Transparent" >
+        Title="MainWindow" Height="450" Width="800" AllowsTransparency="True" WindowStyle="None" Background="Transparent" Loaded="Window_Loaded" >
     <Grid x:Name="world" Background="#00000000" AllowDrop="True">
-        <local:Tile HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,77,0,0"/>
+        <local:Tile HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,56,0,0"/>
     </Grid>
 </Window>

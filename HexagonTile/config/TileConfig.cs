@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HexagonTile.config
+namespace HexagonTile.Config
 {
     class TileConfig
     {

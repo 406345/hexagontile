@@ -1,6 +1,1 @@
-{
-  "tile": {
-    "width": 64,
-    "height": 64
-  }
-}
+{"tile":{"width":64,"height":64},"position":[{"path":"D:\\Applications\\Thunder\\Program\\ThunderStart.exe","x":416,"y":0},{"path":"D:\\Applications\\Tencent\\WeChat\\WeChat.exe","x":288,"y":0},{"path":"D:\\DevTools\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\devenv.exe","x":384,"y":0},{"path":"C:\\Windows\\Installer\\{D3959CF6-0284-40C0-BB4C-D50A1D72342F}\\powertoys.exe","x":320,"y":0},{"path":"D:\\DevTools\\electerm-1.4.4-win-x64\\electerm.exe","x":448,"y":0},{"path":"D:\\Applications\\DingDing\\main\\current\\DingTalk.exe","x":320,"y":0},{"path":"D:\\Applications\\CloudMusic\\cloudmusic.exe","x":352,"y":0}]}
